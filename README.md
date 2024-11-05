@@ -1,70 +1,100 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fundraiser Form
 
-## Available Scripts
+## Описание проекта
+**Fundraiser Form** — это веб-приложение, созданное с использованием **React** и **Ant Design**. Приложение позволяет пользователям вводить данные банковской карты и отправлять платежи, соблюдая все требования безопасности и валидации.
 
-In the project directory, you can run:
+### Основные функции:
+1. **Отображение имени инициатора сбора**: Имя инициатора (`Иван К.`) и название сбора (`Экскурсия`) отображаются на странице.
+2. **Маски для ввода данных**:
+   - Маска для номера карты (16 цифр).
+   - Маска для даты (ММ/ГГ).
+   - Маска для CVV (3 цифры, с маскированным отображением).
+3. **Валидация данных**:
+   - Валидация номера карты с использованием ЛУН алгоритма.
+   - Проверка минимальной суммы перевода (не менее 10 рублей).
+4. **Имитация отправки данных**:
+   - Данные формируются в объект и выводятся в консоль.
+   - Хэширование данных для безопасности с использованием SHA256.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Технические детали
+- **Фреймворк**: React
+- **UI библиотека**: Ant Design
+- **Маскирование ввода**: react-input-mask
+- **Хэширование**: crypto-js
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Установка и запуск проекта
+1. **Склонируйте репозиторий**:
+   ```bash
+   git clone https://github.com/your-username/fundraiser-form.git
+   cd fundraiser-form
+   ```
 
-### `npm test`
+2. **Установите зависимости**:
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Запустите проект**:
+   ```bash
+   npm start
+   ```
 
-### `npm run build`
+4. **Перейдите в браузер**:
+   Откройте [http://localhost:3000](http://localhost:3000), чтобы увидеть приложение.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Техническое задание
+### Основные требования:
+1. **Имя инициатора сбора и название сбора**: Эти данные приходят с разводящей страницы и задаются в переменных.
+2. **Инпуты с масками**:
+   - Номер карты: маска на 16 цифр.
+   - Срок действия: маска в формате ММ/ГГ.
+   - CVV: маска на 3 цифры, маскированное отображение.
+   - Сумма перевода: целочисленное значение, не менее 10 рублей.
+   - Имя и сообщение: текстовые поля, ограничение в 50 символов.
+3. **Валидация номера карты**: Реализована с использованием ЛУН алгоритма.
+4. **Имитация отправки данных на сервер**:
+   - Данные формируются в объект `postData` и выводятся в консоль.
+   - Поле `hash_sum` формируется с использованием SHA256 хэширования.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Пример объекта `postData`:
+```json
+{
+  "hash_sum": "14d85e69dc948e2f04e7494e4f5cdbc89ec2a19d30900c180516098ad365bedb",
+  "transaction": "3243243244324",
+  "description": "Иван К. собирает на Экскурсия",
+  "api_key": "316b2be8-3475-4462-bd57-c7794d4bdb53",
+  "amount": 100,
+  "custom_data": {
+    "initiatorName": "Иван К.",
+    "fundraiserName": "Экскурсия"
+  }
+}
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Используемые технологии
+- **React**: Фронтенд фреймворк для создания пользовательского интерфейса.
+- **Ant Design**: UI библиотека для создания компонентов с современным дизайном.
+- **react-input-mask**: Библиотека для маскирования ввода.
+- **crypto-js**: Библиотека для хэширования данных с использованием алгоритма SHA256.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Развертывание
+Приложение можно развернуть на платформе [Vercel](https://vercel.com) для получения публичной ссылки. Подробная инструкция по развертыванию:
+1. Установите Vercel CLI: `npm install -g vercel`.
+2. В корневой директории проекта выполните команду: `vercel`.
+3. Следуйте инструкциям для завершения развертывания.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Контакты
+Если у вас есть вопросы или предложения, пожалуйста, свяжитесь с нами по электронной почте: [artem.galchenko.88@gmail.com].
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Примечание**: Это приложение создано для демонстрации работы с формами, валидацией и безопасной обработкой данных. Пожалуйста, используйте его только в образовательных целях или адаптируйте для вашего проекта.
